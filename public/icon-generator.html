@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Icon Generator</title>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <script>
+    function generateIcon(size) {
+      const canvas = document.getElementById('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      
+      // 배경
+      ctx.fillStyle = '#4F46E5';
+      ctx.fillRect(0, 0, size, size);
+      
+      // 중앙 원
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size/6, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 3개의 작은 원 (페르소나)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      
+      // 왼쪽 위
+      ctx.beginPath();
+      ctx.arc(size*0.25, size*0.35, size/10, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 오른쪽 위
+      ctx.beginPath();
+      ctx.arc(size*0.75, size*0.35, size/10, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 아래
+      ctx.beginPath();
+      ctx.arc(size/2, size*0.75, size/10, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // 연결선
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.lineWidth = size/64;
+      
+      ctx.beginPath();
+      ctx.moveTo(size*0.25, size*0.35);
+      ctx.lineTo(size*0.42, size*0.47);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(size*0.75, size*0.35);
+      ctx.lineTo(size*0.58, size*0.47);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(size/2, size*0.75);
+      ctx.lineTo(size/2, size*0.58);
+      ctx.stroke();
+      
+      // 텍스트 (큰 아이콘에만)
+      if (size >= 192) {
+        ctx.fillStyle = 'white';
+        ctx.font = `bold ${size/10}px Arial`;
+        ctx.textAlign = 'center';
+        ctx.fillText('PG', size/2, size*0.9);
+      }
+      
+      return canvas.toDataURL('image/png');
+    }
+    
+    // 다양한 크기 생성
+    const sizes = [16, 32, 96, 192, 512];
+    sizes.forEach(size => {
+      const dataUrl = generateIcon(size);
+      const link = document.createElement('a');
+      link.download = `icon-${size}.png`;
+      link.href = dataUrl;
+      link.textContent = `Download ${size}x${size}`;
+      link.style.display = 'block';
+      link.style.margin = '10px';
+      document.body.appendChild(link);
+    });
+    
+    // Apple touch icon
+    const appleIcon = generateIcon(180);
+    const appleLink = document.createElement('a');
+    appleLink.download = 'apple-touch-icon.png';
+    appleLink.href = appleIcon;
+    appleLink.textContent = 'Download Apple Touch Icon (180x180)';
+    appleLink.style.display = 'block';
+    appleLink.style.margin = '10px';
+    document.body.appendChild(appleLink);
+  </script>
+</body>
+</html>

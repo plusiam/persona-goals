@@ -1,0 +1,45 @@
+{
+  "name": "Persona Goals - 페르소나 기반 목표 관리",
+  "short_name": "Persona Goals",
+  "description": "처음엔 간단하게, 필요하면 강력하게. 당신의 다양한 역할에 맞춘 목표 관리 플랫폼",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4F46E5",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-placeholder.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "홈 화면"
+    },
+    {
+      "src": "/screenshot-2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "label": "목표 관리"
+    }
+  ],
+  "categories": ["productivity", "education", "lifestyle"],
+  "lang": "ko-KR",
+  "dir": "ltr",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "새 목표 추가",
+      "short_name": "새 목표",
+      "description": "빠르게 새로운 목표 추가하기",
+      "url": "/?action=add-goal",
+      "icons": [{ "src": "/icon-96.png", "sizes": "96x96" }]
+    }
+  ]
+}
